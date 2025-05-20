@@ -23,36 +23,36 @@ namespace Backend_Analisis.Controllers
 
         // GET: api/Region
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Persona>>> GetPersonas()
+        public async Task<ActionResult<IEnumerable<Region>>> GetRegiones()
         {
-            return await _context.Personas.ToListAsync();
+            return await _context.Regions.ToListAsync();
         }
 
         // GET: api/Region/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Persona>> GetPersona(int id)
+        public async Task<ActionResult<Region>> GetRegion(int id)
         {
-            var persona = await _context.Personas.FindAsync(id);
+            var Region = await _context.Regions.FindAsync(id);
 
-            if (persona == null)
+            if (Region == null)
             {
                 return NotFound();
             }
 
-            return persona;
+            return Region;
         }
 
         // PUT: api/Region/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPersona(int id, Persona persona)
+        public async Task<IActionResult> Region(int id, Region Region)
         {
-            if (id != persona.Id)
+            if (id != Region.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(persona).State = EntityState.Modified;
+            _context.Entry(Region).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace Backend_Analisis.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PersonaExists(id))
+                if (!RegionExists(id))
                 {
                     return NotFound();
                 }
@@ -76,33 +76,33 @@ namespace Backend_Analisis.Controllers
         // POST: api/Region
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Persona>> PostPersona(Persona persona)
+        public async Task<ActionResult<Region>> Region(Region Region)
         {
-            _context.Personas.Add(persona);
+            _context.Regions.Add(Region);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPersona", new { id = persona.Id }, persona);
+            return CreatedAtAction("Region", new { id = Region.Id }, Region);
         }
 
         // DELETE: api/Region/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePersona(int id)
+        public async Task<IActionResult> Region(int id)
         {
-            var persona = await _context.Personas.FindAsync(id);
-            if (persona == null)
+            var Region = await _context.Regions.FindAsync(id);
+            if (Region == null)
             {
                 return NotFound();
             }
 
-            _context.Personas.Remove(persona);
+            _context.Regions.Remove(Region);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool PersonaExists(int id)
+        private bool RegionExists(int id)
         {
-            return _context.Personas.Any(e => e.Id == id);
+            return _context.Regions.Any(e => e.Id == id);
         }
     }
 }

@@ -8,6 +8,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost4200",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
 // DbContext
 builder.Services.AddDbContext<RegistroPersonaContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("RegistroPersonaConnection")));
@@ -20,6 +32,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Usa CORS antes de los controladores
+app.UseCors("AllowLocalhost4200");
 
 app.UseHttpsRedirection();
 

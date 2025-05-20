@@ -5,7 +5,7 @@ namespace Backend_Analisis.Models;
 
 public partial class Persona
 {
-    public int Id { get; set; }
+    public string Id { get; set; } = null!;
 
     public string PrimerNombre { get; set; } = null!;
 
@@ -17,13 +17,21 @@ public partial class Persona
 
     public DateOnly FechaDeNacimiento { get; set; }
 
+    public DateOnly FechaDeResidencia { get; set; }
+
     public string? TipoDeSangre { get; set; }
 
     public int? RegionId { get; set; }
+
+    public int? TipoPersonaId { get; set; }
 
     public string? Genero { get; set; }
 
     public byte[]? Foto { get; set; }
 
+    public string Estado { get; set; } = null!;
+
     public virtual Region? Region { get; set; }
+
+    public virtual TipoPersona? TipoPersona { get; set; }
 }

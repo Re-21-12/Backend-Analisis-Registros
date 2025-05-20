@@ -1,0 +1,21 @@
+public class PersonaResponseDto
+{
+    public string Id { get; set; }
+    public string PrimerNombre { get; set; }
+    public string? SegundoNombre { get; set; }
+    public string PrimerApellido { get; set; }
+    public string? SegundoApellido { get; set; }
+    public DateOnly FechaDeNacimiento { get; set; }
+    public DateOnly FechaDeResidencia { get; set; }
+    public string? TipoDeSangre { get; set; }
+    public string? Genero { get; set; }
+    public byte[]? Foto { get; set; }
+    public string Estado { get; set; }
+
+    public int? RegionId { get; set; }
+    public int? TipoPersonaId { get; set; }
+
+    // Propiedades relacionadas
+    public string? RegionNombre { get; set; }
+    public string? TipoPersonaNombre { get; set; }
+}

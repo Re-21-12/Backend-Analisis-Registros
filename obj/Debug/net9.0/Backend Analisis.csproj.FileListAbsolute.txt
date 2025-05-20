@@ -274,3 +274,4 @@
 /mnt/hdd/Proyectos_de_la_universidad/Analisis Back/Backend Analisis/bin/Debug/net9.0/Swashbuckle.AspNetCore.Swagger.dll
 /mnt/hdd/Proyectos_de_la_universidad/Analisis Back/Backend Analisis/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /mnt/hdd/Proyectos_de_la_universidad/Analisis Back/Backend Analisis/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/mnt/hdd/Proyectos_de_la_universidad/Analisis Back/Backend Analisis/obj/Debug/net9.0/Backend Analisis.sourcelink.json
