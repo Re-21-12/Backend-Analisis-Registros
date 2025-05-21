@@ -1,0 +1,50 @@
+# Archivos y carpetas de compilación
+bin/
+obj/
+out/
+publish/
+# Configuración de usuario y del entorno de desarrollo
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vscode/
+.idea/
+*.swp
+
+# Archivos de dependencias y paquetes
+*.log
+*.lock.json
+*.cache
+*.pdb
+*.mdb
+*.ilk
+*.idb
+*.tlog
+*.tmp
+*.csproj.user
+*.dbmdl
+*.jfm
+*.pyc
+*.class
+
+# Archivos de publicación y despliegue
+publish/
+*.Publish.xml
+*.PublishSettings
+
+# Archivos de configuración local
+appsettings.Development.json
+appsettings.Local.json
+
+# Archivos de Docker
+docker-compose.override.yml
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de logs
+*.log
+logs/
