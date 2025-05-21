@@ -11,15 +11,16 @@ builder.Services.AddSwaggerGen();
 // CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowLocalhost4200",
+    options.AddPolicy("AllowAngularNetlify",
         policy =>
         {
-            policy.WithOrigins("http://localhost:4200")
+            policy.WithOrigins("http://localhost:4200",
+                               "https://front-analisis-registros.netlify.app")
                   .AllowAnyHeader()
                   .AllowAnyMethod();
         });
 });
-
+// ...existing code...
 // DbContext
 builder.Services.AddDbContext<RegistroPersonaContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("RegistroPersonaConnection")));
@@ -34,8 +35,7 @@ if (app.Environment.IsDevelopment())
 }
 
 // Usa CORS antes de los controladores
-app.UseCors("AllowLocalhost4200");
-
+app.UseCors("AllowAngularNetlify");
 app.UseHttpsRedirection();
 
 app.MapControllers(); // ❗ Importante
