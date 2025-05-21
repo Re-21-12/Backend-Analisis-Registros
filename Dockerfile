@@ -20,7 +20,6 @@ ENV ASPNETCORE_ENVIRONMENT=Production
 
 # Expone el puerto en el que corre tu aplicación
 EXPOSE 5035
-EXPOSE 5001
 
 # Comando para ejecutar la aplicación
 ENTRYPOINT ["dotnet", "Backend Analisis.dll"]

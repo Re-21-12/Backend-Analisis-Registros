@@ -26,7 +26,7 @@ builder.Services.AddDbContext<RegistroPersonaContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("RegistroPersonaConnection")));
 
 var app = builder.Build();
-
+app.Urls.Add("http://+:5035"); // Cambia el puerto si es necesario
 // Middleware Swagger
 if (app.Environment.IsDevelopment())
 {
