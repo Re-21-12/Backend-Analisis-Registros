@@ -16,7 +16,7 @@ WORKDIR /app
 COPY --from=build /app/publish .
 
 # Configura el entorno como Production
-ENV ASPNETCORE_ENVIRONMENT=Production
+ENV ASPNETCORE_ENVIRONMENT=Staging
 
 # Expone el puerto en el que corre tu aplicación
 EXPOSE 5035
