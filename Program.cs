@@ -14,8 +14,11 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAngularNetlify",
         policy =>
         {
-            policy.WithOrigins("http://localhost:4200",
-                               "https://front-analisis-registros.netlify.app")
+            policy.WithOrigins(
+                "http://localhost:4200",
+                "https://front-analisis-registros.netlify.app",
+                "http://frontend:4200"                                  
+                                )
                   .AllowAnyHeader()
                   .AllowAnyMethod();
         });
