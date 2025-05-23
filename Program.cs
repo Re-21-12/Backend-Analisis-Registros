@@ -17,7 +17,8 @@ builder.Services.AddCors(options =>
             policy.WithOrigins(
                 "http://localhost:4200",
                 "https://front-analisis-registros.netlify.app",
-                "http://frontend:4200"                                  
+                "http://frontend:4200",
+                "https://proy-analisis-re2112.duckdns.org"
                                 )
                   .AllowAnyHeader()
                   .AllowAnyMethod();
