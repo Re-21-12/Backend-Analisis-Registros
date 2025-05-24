@@ -40,6 +40,10 @@ builder.Services.AddDbContext<RegistroPersonaContext>(options =>
 
 var app = builder.Build();
 
+// Configuración de puerto para Render
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5035";
+app.Urls.Add($"http://0.0.0.0:{port}");
+
 // Remover esta línea para producción en Render
 // app.Urls.Add("http://+:5035"); 
 
