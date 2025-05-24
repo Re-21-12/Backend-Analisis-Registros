@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// CORS
+// CORS - Configuración mejorada
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularNetlify",
@@ -19,10 +19,12 @@ builder.Services.AddCors(options =>
                 "http://localhost:4200",
                 "https://front-analisis-registros.netlify.app",
                 "http://frontend:4200",
-                "https://proy-analisis-re2112.duckdns.org"
-                                )
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
+                "https://proy-analisis-re2112.duckdns.org",
+                "http://localhost:5035"
+            )
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials(); // Agregar si usas cookies/auth
         });
 });
 
@@ -37,7 +39,9 @@ builder.Services.AddDbContext<RegistroPersonaContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("RegistroPersonaConnection")));
 
 var app = builder.Build();
-app.Urls.Add("http://+:5035"); // Puerto interno en Render
+
+// Remover esta línea para producción en Render
+// app.Urls.Add("http://+:5035"); 
 
 // Middleware Swagger
 if (app.Environment.IsDevelopment())
@@ -46,9 +50,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Usa CORS antes de los controladores
-app.UseCors("AllowAngularNetlify");
-app.UseHttpsRedirection(); // ✅ Ahora usará el puerto 443 correctamente
+// Reordenar middleware
+app.UseCors("AllowAngularNetlify"); // CORS debe ir antes que HTTPS redirection
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection(); // Solo en producción
+}
 
 app.MapControllers();
 
