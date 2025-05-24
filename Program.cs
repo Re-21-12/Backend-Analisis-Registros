@@ -3,6 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configuración del puerto
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5035";
+builder.WebHost.UseUrls($"http://*:{port}");
+
 // Swagger y servicios
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -30,7 +34,7 @@ builder.Services.AddDbContext<RegistroPersonaContext>(options =>
 var app = builder.Build();
 
 // Middlewares
-app.UseCors("AllowFrontend"); // CORS primero
+app.UseCors("AllowFrontend");
 
 if (app.Environment.IsDevelopment())
 {
@@ -39,4 +43,4 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapControllers();
-app.Run(); // Render usa automáticamente el puerto de la variable PORT
+app.Run();
