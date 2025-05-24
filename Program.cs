@@ -19,12 +19,10 @@ builder.Services.AddCors(options =>
                 "http://localhost:4200",
                 "https://front-analisis-registros.netlify.app",
                 "http://frontend:4200",
-                "https://proy-analisis-re2112.duckdns.org",
-                "http://localhost:5035"
+                "https://proy-analisis-re2112.duckdns.org"
             )
             .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials(); // Agregar si usas cookies/auth
+            .AllowAnyMethod();
         });
 });
 
