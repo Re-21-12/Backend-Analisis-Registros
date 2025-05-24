@@ -1,4 +1,5 @@
 using Backend_Analisis.Data;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,13 +25,20 @@ builder.Services.AddCors(options =>
                   .AllowAnyMethod();
         });
 });
-// ...existing code...
+
+// 🔥 Solución: Configurar el puerto HTTPS para redirección (añade esto)
+builder.Services.Configure<HttpsRedirectionOptions>(options =>
+{
+    options.HttpsPort = 443; // Puerto estándar HTTPS en Render
+});
+
 // DbContext
 builder.Services.AddDbContext<RegistroPersonaContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("RegistroPersonaConnection")));
 
 var app = builder.Build();
-app.Urls.Add("http://+:5035"); // Cambia el puerto si es necesario
+app.Urls.Add("http://+:5035"); // Puerto interno en Render
+
 // Middleware Swagger
 if (app.Environment.IsDevelopment())
 {
@@ -40,8 +48,8 @@ if (app.Environment.IsDevelopment())
 
 // Usa CORS antes de los controladores
 app.UseCors("AllowAngularNetlify");
-app.UseHttpsRedirection();
+app.UseHttpsRedirection(); // ✅ Ahora usará el puerto 443 correctamente
 
-app.MapControllers(); // ❗ Importante
+app.MapControllers();
 
 app.Run();
